@@ -10,6 +10,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 public final class LightningStick {
 	private LightningStick() {
@@ -24,7 +26,16 @@ public final class LightningStick {
 			return InteractionResult.PASS;
 		}
 
-		BlockPos targetPos = player.blockPosition().relative(player.getDirection(), 10);
+		//BlockPos targetPos = player.blockPosition().relative(player.getDirection(), 10);
+
+		HitResult hit = player.pick(100.0D, 0.0F, false);
+
+		if (!(hit instanceof BlockHitResult blockHit)) {
+			return InteractionResult.PASS;
+		}
+
+		BlockPos targetPos = blockHit.getBlockPos();
+
 		@SuppressWarnings("unchecked")
 		EntityType<? extends LightningBolt> lightningType = (EntityType<? extends LightningBolt>) BuiltInRegistries.ENTITY_TYPE
 			.getOptional(Identifier.fromNamespaceAndPath("minecraft", "lightning_bolt"))
