@@ -1,6 +1,7 @@
 package adonis.mixin;
 
 import adonis.actions.Nuke;
+import adonis.actions.Stab;
 import adonis.item.GenesisPen;
 import net.minecraft.network.protocol.game.ServerboundChatPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,10 +21,8 @@ public class ServerGamePacketListenerImplMixin {
 
 	@Inject(method = "handleChat(Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)V", at = @At("HEAD"), cancellable = true)
 	private void adonis$handleChat(ServerboundChatPacket packet, CallbackInfo ci) {
+
 		String message = packet.message().trim();
-		if (!"nuke".equalsIgnoreCase(message)) {
-			return;
-		}
 
 		ItemStack mainHand = player.getItemInHand(InteractionHand.MAIN_HAND);
 		ItemStack offHand = player.getItemInHand(InteractionHand.OFF_HAND);
@@ -32,7 +31,15 @@ public class ServerGamePacketListenerImplMixin {
 			return;
 		}
 
-		Nuke.cast(player.level(), player);
-		ci.cancel();
+		switch (message.toLowerCase()) {
+			case "nuke":
+				Nuke.cast(player.level(),player);
+				ci.cancel();
+				break;
+			case "stab":
+				Stab.cast(player.level(),player);
+				ci.cancel();
+				break;
+		}
 	}
 }

@@ -30,29 +30,37 @@ public final class Nuke {
 		}
 
 		BlockPos center = blockHit.getBlockPos();
-		spawnRing(serverLevel, center, 8, 15);
-		spawnRing(serverLevel, center, 14, 10);
-		spawnRing(serverLevel, center, 20, 7);
+		spawnNuke(serverLevel, center, 0, 6);
+		spawnNuke(serverLevel, center, 4, 6);
+		spawnNuke(serverLevel, center, 8, 6);
+		spawnNuke(serverLevel, center, 12, 6);
+		spawnNuke(serverLevel, center, 16, 6);
+		spawnNuke(serverLevel, center, 20, 6);
 
 		return InteractionResult.SUCCESS;
 	}
 
-	private static void spawnRing(ServerLevel level, BlockPos center, int radius, int spawnHeight) {
-		for (int x = -radius; x <= radius; x++) {
-			for (int z = -radius; z <= radius; z++) {
-				if (x * x + z * z > radius * radius) {
-					continue;
-				}
+	private static void spawnNuke(ServerLevel level, BlockPos center, int radius, int spawnHeight) {
 
-				BlockPos spawnPos = center.offset(x, spawnHeight, z);
-				PrimedTnt tnt = EntityTypes.TNT.create(level, EntitySpawnReason.TRIGGERED);
-				if (tnt == null) {
-					continue;
-				}
+		for (int angle = 0; angle < 360; angle += 10) {
 
-				tnt.setPos(spawnPos.getX() + 0.5D, spawnPos.getY(), spawnPos.getZ() + 0.5D);
-				level.addFreshEntity(tnt);
+			double radians = Math.toRadians(angle);
+
+			int x = (int) Math.round(radius * Math.cos(radians));
+			int z = (int) Math.round(radius * Math.sin(radians));
+
+
+			BlockPos spawnPos = center.offset(x, spawnHeight, z);
+			PrimedTnt tnt = EntityTypes.TNT.create(level, EntitySpawnReason.TRIGGERED);
+
+			if (tnt == null) {
+				continue;
 			}
+
+			tnt.setPos(spawnPos.getX() + 0.5D, spawnPos.getY(), spawnPos.getZ() + 0.5D);
+			tnt.setFuse(20);
+			level.addFreshEntity(tnt);
 		}
+
 	}
 }
