@@ -33,7 +33,7 @@ public final class Stab {
 
         BlockPos center = blockHit.getBlockPos();
 
-        spawnStab(serverLevel, center, 50);
+        spawnStab(serverLevel, center, 100);
 
         return InteractionResult.SUCCESS;
     }

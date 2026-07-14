@@ -26,8 +26,6 @@ public final class LightningStick {
 			return InteractionResult.PASS;
 		}
 
-		//BlockPos targetPos = player.blockPosition().relative(player.getDirection(), 10);
-
 		HitResult hit = player.pick(100.0D, 0.0F, false);
 
 		if (!(hit instanceof BlockHitResult blockHit)) {

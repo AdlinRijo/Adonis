@@ -36,6 +36,9 @@ public final class Nuke {
 		spawnNuke(serverLevel, center, 12, 6);
 		spawnNuke(serverLevel, center, 16, 6);
 		spawnNuke(serverLevel, center, 20, 6);
+		spawnNuke(serverLevel, center, 24, 6);
+		spawnNuke(serverLevel, center, 28, 6);
+		spawnNuke(serverLevel, center, 32, 6);
 
 		return InteractionResult.SUCCESS;
 	}
@@ -58,7 +61,7 @@ public final class Nuke {
 			}
 
 			tnt.setPos(spawnPos.getX() + 0.5D, spawnPos.getY(), spawnPos.getZ() + 0.5D);
-			tnt.setFuse(20);
+			tnt.setFuse(40);
 			level.addFreshEntity(tnt);
 		}
 
