@@ -7,6 +7,7 @@ import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import adonis.block.Ruby;
 import adonis.item.GenesisPen;
 
 public class Adonis implements ModInitializer {
@@ -24,7 +25,8 @@ public class Adonis implements ModInitializer {
 		// Proceed with mild caution.
 
 		GenesisPen.initialize();
-		LOGGER.info("Hello Fabric world!");
+		Ruby.initialize();
+		LOGGER.info("Developer learning JAVA");
 	}
 
 	public static Identifier id(String path) {

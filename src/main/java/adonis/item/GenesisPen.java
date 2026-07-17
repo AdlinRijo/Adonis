@@ -1,6 +1,7 @@
 package adonis.item;
 
 import adonis.actions.LightningStick;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -8,6 +9,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -21,20 +23,19 @@ public class GenesisPen {
 	public static final Item GENESIS_PEN = register("genesis_pen", GenesisPenItem::new, new Item.Properties());
 
 	public static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
-		// Create the item key.
 		ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, Adonis.id(name));
 
-		// Create the item instance.
 		T item = itemFactory.apply(settings.setId(itemKey));
 
-		// Register the item.
 		Registry.register(BuiltInRegistries.ITEM, itemKey, item);
 
 		return item;
 	}
 
 	public static void initialize() {
-		// Items are registered via static fields above
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT)
+				.register((creativeTab) -> creativeTab.accept(GENESIS_PEN));
+
 	}
 
 	public static class GenesisPenItem extends Item {
