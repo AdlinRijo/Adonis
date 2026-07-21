@@ -1,5 +1,6 @@
 package adonis.mixin;
 
+import adonis.actions.MakeBig;
 import adonis.actions.Nuke;
 import adonis.actions.Stab;
 import adonis.item.GenesisPen;
@@ -38,6 +39,10 @@ public class ServerGamePacketListenerImplMixin {
 				break;
 			case "stab":
 				Stab.cast(player.level(),player);
+				ci.cancel();
+				break;
+			case "big":
+				MakeBig.cast(player.level(),player);
 				ci.cancel();
 				break;
 		}

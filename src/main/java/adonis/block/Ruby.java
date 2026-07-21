@@ -3,22 +3,20 @@ package adonis.block;
 import java.util.function.Function;
 
 import adonis.Adonis;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class Ruby {
-	public static final Block TEST_BLOCK = register(
-		"test_block",
-		Block::new,
-		BlockBehaviour.Properties.of().strength(1.0F),
-		true
-	);
+	public static final Block RUBY = register("ruby", Block::new,BlockBehaviour.Properties.of().strength(1.0F), true);
 
 	private static <T extends Block> T register(
 		String name,
@@ -47,6 +45,7 @@ public class Ruby {
 	}
 
 	public static void initialize() {
-		// Blocks are registered via static fields above.
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
+				.register((creativeTab)->creativeTab.accept(RUBY));
 	}
 }
