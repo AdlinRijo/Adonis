@@ -23,6 +23,7 @@ public class GenesisPen {
 	public static final Item GENESIS_PEN = register("genesis_pen", GenesisPenItem::new, new Item.Properties());
 
 	public static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
+
 		ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, Adonis.id(name));
 
 		T item = itemFactory.apply(settings.setId(itemKey));
@@ -39,7 +40,7 @@ public class GenesisPen {
 	}
 
 	public static class GenesisPenItem extends Item {
-		private static final int COOLDOWN_TICKS = 0; // 10 seconds (20 ticks per second)
+		private static final int COOLDOWN_TICKS = 100; // 10 seconds (20 ticks per second)
 
 		public GenesisPenItem(Item.Properties properties) {
 			super(properties);
