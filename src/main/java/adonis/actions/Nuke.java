@@ -1,6 +1,7 @@
 package adonis.actions;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.InteractionResult;
@@ -63,6 +64,10 @@ public final class Nuke {
 			}
 
 			tnt.setPos(spawnPos.getX() + 0.5D, spawnPos.getY(), spawnPos.getZ() + 0.5D);
+
+			ServerLevel serverLevel;
+			//serverLevel.sendParticles(ParticleTypes.FALLING_LAVA, spawnPos.getX(), spawnPos.getY(), spawnPos.getX(), 32,0.5,0.5,0.5);
+
 			Random random = new Random();
 			int fuse = random.nextInt(40,120);
 			tnt.setFuse(fuse);
