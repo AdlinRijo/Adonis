@@ -1,7 +1,7 @@
 package adonis.mixin;
 
-import adonis.actions.MakeBig;
 import adonis.actions.Nuke;
+import adonis.actions.RitualOfRuin;
 import adonis.actions.Stab;
 import adonis.item.GenesisPen;
 import net.minecraft.network.protocol.game.ServerboundChatPacket;
@@ -41,8 +41,9 @@ public class ServerGamePacketListenerImplMixin {
 				Stab.cast(player.level(),player);
 				ci.cancel();
 				break;
-			case "big":
-				MakeBig.cast(player.level(),player);
+			case "ritual of ruin":
+			case "ritualofruin":
+				RitualOfRuin.cast(player.level(), player);
 				ci.cancel();
 				break;
 		}

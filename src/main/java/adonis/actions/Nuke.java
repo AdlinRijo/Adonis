@@ -11,6 +11,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 
+import java.util.Random;
+
 public final class Nuke {
 	private Nuke() {
 	}
@@ -61,7 +63,9 @@ public final class Nuke {
 			}
 
 			tnt.setPos(spawnPos.getX() + 0.5D, spawnPos.getY(), spawnPos.getZ() + 0.5D);
-			tnt.setFuse(40);
+			Random random = new Random();
+			int fuse = random.nextInt(40,120);
+			tnt.setFuse(fuse);
 			level.addFreshEntity(tnt);
 		}
 

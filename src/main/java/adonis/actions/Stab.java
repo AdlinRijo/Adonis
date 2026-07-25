@@ -12,6 +12,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.level.Level;
 
+import java.util.Random;
+
 
 public final class Stab {
 
@@ -48,7 +50,9 @@ public final class Stab {
             if(tnt == null){
                 continue;
             }
-            tnt.setFuse(0);
+            Random random = new Random();
+            int fuse = random.nextInt(0,20);
+            tnt.setFuse(fuse);
             tnt.setPos(spawnpos.getX()+0.5, spawnpos.getY(), spawnpos.getZ()+0.5);
             level.addFreshEntity(tnt);
         }
