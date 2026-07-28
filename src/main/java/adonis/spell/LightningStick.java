@@ -1,4 +1,4 @@
-package adonis.actions;
+package adonis.spell;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;

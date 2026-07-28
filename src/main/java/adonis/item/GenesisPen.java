@@ -1,6 +1,6 @@
 package adonis.item;
 
-import adonis.actions.LightningStick;
+import adonis.spell.LightningStick;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;

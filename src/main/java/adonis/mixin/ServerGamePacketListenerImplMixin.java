@@ -1,8 +1,8 @@
 package adonis.mixin;
 
-import adonis.actions.Nuke;
-import adonis.actions.RitualOfRuin;
-import adonis.actions.Stab;
+import adonis.spell.Nuke;
+import adonis.spell.RitualOfRuin;
+import adonis.spell.Stab;
 import adonis.item.GenesisPen;
 import net.minecraft.network.protocol.game.ServerboundChatPacket;
 import net.minecraft.server.level.ServerPlayer;

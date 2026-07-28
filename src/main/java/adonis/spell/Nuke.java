@@ -1,10 +1,9 @@
-package adonis.actions;
+package adonis.spell;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.item.PrimedTnt;
@@ -18,35 +17,28 @@ public final class Nuke {
 	private Nuke() {
 	}
 
-	public static InteractionResult cast(Level level, Player player) {
-		if (level.isClientSide()) {
-			return InteractionResult.PASS;
-		}
+	public void cnfNuke(Level level, Player player) {
 
-		if (!(level instanceof ServerLevel serverLevel)) {
-			return InteractionResult.PASS;
-		}
 
 		HitResult hit = player.pick(200.0D, 0.0F, false);
-		if (!(hit instanceof BlockHitResult blockHit)) {
-			return InteractionResult.PASS;
-		}
-
+		BlockHitResult blockHit = (BlockHitResult) hit;
 		BlockPos center = blockHit.getBlockPos();
-		spawnNuke(serverLevel, center, 0, 6);
-		spawnNuke(serverLevel, center, 4, 6);
-		spawnNuke(serverLevel, center, 8, 6);
-		spawnNuke(serverLevel, center, 12, 6);
-		spawnNuke(serverLevel, center, 16, 6);
-		spawnNuke(serverLevel, center, 20, 6);
-		spawnNuke(serverLevel, center, 24, 6);
-		spawnNuke(serverLevel, center, 28, 6);
-		spawnNuke(serverLevel, center, 32, 6);
+		ServerLevel sl = (ServerLevel) level;
+		spawnNuke(sl, center, 0);
+		spawnNuke(sl, center, 4);
+		spawnNuke(sl, center, 8);
+		spawnNuke(sl, center, 12);
+		spawnNuke(sl, center, 16);
+		spawnNuke(sl, center, 20);
+		spawnNuke(sl, center, 24);
+		spawnNuke(sl, center, 28);
+		spawnNuke(sl, center, 32);
 
-		return InteractionResult.SUCCESS;
 	}
 
-	private static void spawnNuke(ServerLevel level, BlockPos center, int radius, int spawnHeight) {
+	private static void spawnNuke(ServerLevel level, BlockPos center, int radius) {
+		int spawnHeight = 6;
+
 
 		for (int angle = 0; angle < 360; angle += 10) {
 
@@ -65,8 +57,8 @@ public final class Nuke {
 
 			tnt.setPos(spawnPos.getX() + 0.5D, spawnPos.getY(), spawnPos.getZ() + 0.5D);
 
-			ServerLevel serverLevel;
-			//serverLevel.sendParticles(ParticleTypes.FALLING_LAVA, spawnPos.getX(), spawnPos.getY(), spawnPos.getX(), 32,0.5,0.5,0.5);
+
+			level.sendParticles(ParticleTypes.SOUL,spawnPos.getX(),spawnPos.getY(),spawnPos.getZ(),100,0	,0,0,0.1);
 
 			Random random = new Random();
 			int fuse = random.nextInt(40,120);

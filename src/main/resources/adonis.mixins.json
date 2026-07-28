@@ -3,7 +3,6 @@
 	"package": "adonis.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
-		"ExampleMixin",
 		"ServerGamePacketListenerImplMixin"
 	],
 	"injectors": {
