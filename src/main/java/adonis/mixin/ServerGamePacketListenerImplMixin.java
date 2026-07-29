@@ -34,7 +34,7 @@ public class ServerGamePacketListenerImplMixin {
 
 		switch (message.toLowerCase()) {
 			case "nuke":
-				Nuke.cast(player.level(),player);
+				Nuke.cnfNuke(player.level(),player);
 				ci.cancel();
 				break;
 			case "stab":

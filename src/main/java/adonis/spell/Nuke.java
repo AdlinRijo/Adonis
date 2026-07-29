@@ -17,8 +17,9 @@ public final class Nuke {
 	private Nuke() {
 	}
 
-	public void cnfNuke(Level level, Player player) {
+	public static void cnfNuke(Level level, Player player) {
 
+        Spell.cast(level, player);
 
 		HitResult hit = player.pick(200.0D, 0.0F, false);
 		BlockHitResult blockHit = (BlockHitResult) hit;

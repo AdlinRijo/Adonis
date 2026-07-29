@@ -19,18 +19,12 @@ public final class Stab {
 
     public static InteractionResult cast(Level level, Player player) {
 
-        if(level.isClientSide()){
-            return InteractionResult.PASS;
-        }
-        if(!(level instanceof ServerLevel serverLevel)){
-            return InteractionResult.PASS;
-        }
+        Spell.cast(level, player);
 
         HitResult hit = player.pick(100, 0.00F,false);
 
-        if (!(hit instanceof BlockHitResult blockHit)){
-            return InteractionResult.PASS;
-        }
+        ServerLevel serverLevel = (ServerLevel) level;
+        BlockHitResult blockHit = (BlockHitResult) hit;
 
         BlockPos center = blockHit.getBlockPos();
 
