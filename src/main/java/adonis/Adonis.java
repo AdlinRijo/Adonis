@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import adonis.item.GenesisPen;
+import adonis.spell.RitualOfRuin;
 
 public class Adonis implements ModInitializer {
 	public static final String MOD_ID = "adonis";
@@ -24,6 +25,7 @@ public class Adonis implements ModInitializer {
 		// Proceed with mild caution.
 
 		GenesisPen.initialize();
+		RitualOfRuin.init();
 		LOGGER.info("Developer learning JAVA");
 	}
 

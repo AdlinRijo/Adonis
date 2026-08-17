@@ -40,7 +40,7 @@ public class GenesisPen {
 	}
 
 	public static class GenesisPenItem extends Item {
-		private static final int COOLDOWN_TICKS = 100; // 10 seconds (20 ticks per second)
+		private static final int COOLDOWN_TICKS = 0; // 10 seconds (20 ticks per second)
 
 		public GenesisPenItem(Item.Properties properties) {
 			super(properties);

@@ -38,8 +38,8 @@ public final class Nuke {
 	}
 
 	private static void spawnNuke(ServerLevel level, BlockPos center, int radius) {
-		int spawnHeight = 6;
 
+		int spawnHeight = 6;
 
 		for (int angle = 0; angle < 360; angle += 10) {
 
@@ -47,7 +47,6 @@ public final class Nuke {
 
 			int x = (int) Math.round(radius * Math.cos(radians));
 			int z = (int) Math.round(radius * Math.sin(radians));
-
 
 			BlockPos spawnPos = center.offset(x, spawnHeight, z);
 			PrimedTnt tnt = EntityTypes.TNT.create(level, EntitySpawnReason.TRIGGERED);
@@ -57,10 +56,7 @@ public final class Nuke {
 			}
 
 			tnt.setPos(spawnPos.getX() + 0.5D, spawnPos.getY(), spawnPos.getZ() + 0.5D);
-
-
 			level.sendParticles(ParticleTypes.SOUL,spawnPos.getX(),spawnPos.getY(),spawnPos.getZ(),100,0	,0,0,0.1);
-
 			Random random = new Random();
 			int fuse = random.nextInt(40,120);
 			tnt.setFuse(fuse);
